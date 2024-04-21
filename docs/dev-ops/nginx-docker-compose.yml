@@ -1,0 +1,26 @@
+# 命令执行 docker-compose -f nginx-docker-compose.yml up -d
+version: '3.9'
+services:
+  nginx_01:
+    image: nginx:1.25.3
+    container_name: nginx_01
+    restart: always
+    ports:
+      - '8090:80'
+    volumes:
+      - ./nginx01/html:/usr/share/nginx/html
+      - ./nginx01/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx01/conf/conf.d:/etc/nginx/conf.d
+    privileged: true
+
+  nginx_02:
+    image: nginx:1.25.3
+    container_name: nginx_02
+    restart: always
+    ports:
+      - '8091:80'
+    volumes:
+      - ./nginx02/html:/usr/share/nginx/html
+      - ./nginx02/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx02/conf/conf.d:/etc/nginx/conf.d
+    privileged: true
